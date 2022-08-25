@@ -1,0 +1,104 @@
+<div class="container container-class">
+  <form [formGroup]="addEmployeeForm">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="Name"
+        formControlName="name"
+        aria-describedby="Name"
+        placeholder="Enter Name"
+      />
+      <!---angular 14 validation updated for required and control -->
+      <div
+        *ngIf="getControl['name'].touched && getControl['name'].invalid"
+        class="text-danger"
+      >
+        <div *ngIf="getControl['name'].errors?.['required']">
+          Name is required.
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Email</label>
+      <input
+        type="email"
+        class="form-control"
+        placeholder="Email"
+        formControlName="emails"
+      />
+      <div
+        *ngIf="getControl['emails'].touched && getControl['emails'].invalid"
+        class="text-danger"
+      >
+        <div *ngIf="getControl['emails'].errors?.['required']">
+          Email is required.
+        </div>
+        <div *ngIf="getControl['emails'].errors?.['email']">
+          Please enter valid email
+        </div>
+      </div>
+
+      <!-- <div  *ngIf="getControl['email'].touched && getControl['email'].invalid" class="invalid-feedback">
+        <div *ngIf="getControl['email'].errors?.['required']">Email is required</div>
+        <div *ngIf="getControl['email'].errors?.['email']">Email must be a valid email address</div> -->
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Phone Number</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Phone Number"
+        minlength="10"
+        maxlength="10"
+        formControlName="phoneNumber"
+      />
+      <div
+        *ngIf="
+          getControl['phoneNumber'].touched && getControl['phoneNumber'].invalid
+        "
+        class="text-danger"
+      >
+        <div *ngIf="getControl['phoneNumber'].errors?.['required']">
+          Phone number is required.
+        </div>
+        <div *ngIf="getControl['phoneNumber'].errors?.['minlength']">
+          Please enter 10 digit number
+        </div>
+        <div *ngIf="getControl['phoneNumber'].errors?.['maxlength']">
+          Please enter 10 digit number
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Address</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Address"
+        formControlName="address"
+      />
+      <div
+        *ngIf="getControl['address'].touched && getControl['address'].invalid"
+        class="text-danger"
+      >
+        <div *ngIf="getControl['address'].errors?.['required']">
+          Address is required.
+        </div>
+      </div>
+    </div>
+    <div class="form-group" style="margin-top: 10px">
+      <button type="button" class="btn btn-danger" (click)="goToList()">
+        Cancel</button
+      >&nbsp;
+      <button
+        type="submit"
+        class="btn btn-primary float-right"
+        (click)="addEmployee()"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+</div>
